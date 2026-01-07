@@ -1,0 +1,19 @@
+services:
+  panel:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: mariadb:10.11
+    environment:
+      MYSQL_ROOT_PASSWORD=root
+      MYSQL_DATABASE=pterodactyl
+      MYSQL_USER=ptero
+      MYSQL_PASSWORD=secret
+
+  redis:
+    image: redis:alpine
